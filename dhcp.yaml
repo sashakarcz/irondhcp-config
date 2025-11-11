@@ -70,7 +70,7 @@ subnets:
 
     # Static reservations
     reservations:
-      - hostname: test-server
+      - hostname: test-server2
         mac: "aa:bb:cc:dd:ee:ff"
         ip: 192.168.2.10
         description: "Test server2"
