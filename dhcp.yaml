@@ -71,7 +71,7 @@ subnets:
     # Static reservations
     reservations:
       - hostname: test-server2
-        mac: "aa:bb:cc:dd:ee:ff"
+        mac: "aa:bb:cc:dd:11:22"
         ip: 192.168.2.10
         description: "Test server2"
         # Per-host boot override (optional)
