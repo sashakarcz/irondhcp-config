@@ -39,6 +39,7 @@ subnets:
         boot:
           tftp_server: "192.168.1.5"
           filename: "ipxe.efi"           # Different filename for UEFI boot
+
   - network: 192.168.2.0/24
     description: "Example Home Network"
 
@@ -78,4 +79,25 @@ subnets:
         # Overrides the subnet-level boot settings for this specific host
         boot:
           tftp_server: "192.168.2.5"
-          filename: "ipxe.efi"           # Different filename for UEFI boot
+
+  - network: 172.16.5.0/24
+    description: "IoT VLAN"
+
+    # Gateway and DNS for this subnet
+    gateway: 172.176.5.1
+    dns_servers:
+      - 172.16.5.1
+      - 1.1.1.1
+        # Lease time
+    lease_duration: 24h
+    max_lease_duration: 168h  # 7 days
+
+    # DHCP options (optional)
+    options:
+      domain_name: "iot.starnix.net"
+
+    # Dynamic pools (LRU allocation)
+    pools:
+      - range_start: 172.16.5.100
+        range_end: 172.16.5.200
+        description: "Dynamic pool"
