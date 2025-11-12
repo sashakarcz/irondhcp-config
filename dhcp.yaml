@@ -101,3 +101,16 @@ subnets:
       - range_start: 172.16.5.100
         range_end: 172.16.5.200
         description: "Dynamic pool"
+
+  - network: 172.16.4.0/24
+    description: "wlan0 network"
+    gateway: 172.16.4.1
+    dns_servers:
+      - 8.8.8.8
+      - 1.1.1.1
+    lease_duration: 24h
+    max_lease_duration: 168h
+    pools:
+      - range_start: 172.16.4.100
+        range_end: 172.16.4.200
+        description: "Dynamic pool"
