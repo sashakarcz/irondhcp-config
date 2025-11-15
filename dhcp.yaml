@@ -1,11 +1,11 @@
 subnets:
   - network: 192.168.1.0/24
-    description: "Example Office Network"
+    description: "Wired VLAN"
 
     # Gateway and DNS for this subnet
     gateway: 192.168.1.1
     dns_servers:
-      - 8.8.8.8
+      - 192.168.1.1
       - 1.1.1.1
 
     # Lease time
@@ -14,7 +14,7 @@ subnets:
 
     # DHCP options (optional)
     options:
-      domain_name: "example.local"
+      domain_name: "starnix.net"
 
     # PXE/iPXE boot settings (network-wide defaults)
     # These are applied to all clients in this subnet
@@ -30,55 +30,15 @@ subnets:
 
     # Static reservations
     reservations:
-      - hostname: test-server
-        mac: "aa:bb:cc:dd:ee:ff"
-        ip: 192.168.1.10
-        description: "Test server"
+      - hostname: "ipa1.starnix.net"
+        mac: "52:54:00:92:cc:4c"
+        ip: 192.168.1.24
+        description: "FreeIPA Server"
         # Per-host boot override (optional)
         # Overrides the subnet-level boot settings for this specific host
         boot:
           tftp_server: "192.168.1.5"
           filename: "ipxe.efi"           # Different filename for UEFI boot
-
-  - network: 192.168.2.0/24
-    description: "Example Home Network"
-
-    # Gateway and DNS for this subnet
-    gateway: 192.168.2.1
-    dns_servers:
-      - 8.8.8.8
-      - 1.1.1.1
-
-    # Lease time
-    lease_duration: 24h
-    max_lease_duration: 168h  # 7 days
-
-    # DHCP options (optional)
-    options:
-      domain_name: "example.local"
-
-    # PXE/iPXE boot settings (network-wide defaults)
-    # These are applied to all clients in this subnet
-    boot:
-      tftp_server: "192.168.2.5"      # DHCP option 66 - TFTP server address
-      filename: "pxelinux.0"           # DHCP option 67 - Boot filename
-
-    # Dynamic pools (LRU allocation)
-    pools:
-      - range_start: 192.168.2.100
-        range_end: 192.168.2.200
-        description: "Dynamic pool"
-
-    # Static reservations
-    reservations:
-      - hostname: test-server2
-        mac: "aa:bb:cc:dd:11:22"
-        ip: 192.168.2.10
-        description: "Test server2"
-        # Per-host boot override (optional)
-        # Overrides the subnet-level boot settings for this specific host
-        boot:
-          tftp_server: "192.168.2.5"
 
   - network: 172.16.5.0/24
     description: "IoT VLAN"
@@ -103,7 +63,7 @@ subnets:
         description: "Dynamic pool"
 
   - network: 172.16.4.0/24
-    description: "Wireless network"
+    description: "Wireless VLAN"
     gateway: 172.16.4.1
     dns_servers:
       - 172.16.4.1
